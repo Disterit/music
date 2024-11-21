@@ -1,0 +1,7 @@
+port: ":8080"
+db:
+  host: "postgres"
+  port: "5432"
+  user: "postgres"
+  database: "music-db"
+  sslmode: "disable"
