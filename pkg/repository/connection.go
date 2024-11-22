@@ -8,6 +8,15 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const (
+	artistTable         = "artist"
+	genreTable          = "genre"
+	albumTable          = "album"
+	songsTable          = "songs"
+	playlistTable       = "playlist"
+	playlist_songsTable = "playlist_songs"
+)
+
 type Config struct {
 	Host     string
 	Port     string
@@ -25,6 +34,8 @@ func Connection(cfg Config) *sql.DB {
 		logger.Log.Error("error to connect to database", err.Error())
 		return nil
 	}
+
+	fmt.Println(db.Ping())
 
 	return db
 }

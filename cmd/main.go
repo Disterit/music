@@ -25,7 +25,7 @@ func main() {
 	db := repository.Connection(repository.Config{
 		Host:     viper.GetString("db.host"),
 		Port:     viper.GetString("db.port"),
-		Username: viper.GetString("db.username"),
+		Username: viper.GetString("db.user"),
 		Password: os.Getenv("DATABASE_PASSWORD"),
 		Database: viper.GetString("db.database"),
 		SSLMode:  viper.GetString("db.sslmode"),
