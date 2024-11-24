@@ -29,6 +29,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			song.POST("/")
 			song.GET("/")
 		}
+
+		album := api.Group("/album")
+		{
+			album.POST("/")
+			album.GET("/")
+		}
 	}
 
 	return router

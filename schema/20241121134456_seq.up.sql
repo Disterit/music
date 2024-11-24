@@ -20,7 +20,7 @@ CREATE TABLE songs (
     title_song varchar(255) not null ,
     text_song text not null ,
     id_genre integer references genre(id) on delete cascade not null,
-    id_album integer references album(id) on delete cascade not null,
+    id_album integer references album(id) on delete cascade,
     unique(id_album, id_genre)
 );
 
