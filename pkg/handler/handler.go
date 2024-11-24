@@ -22,5 +22,14 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.GET("/sing-in", h.SingIn)
 	}
 
+	api := router.Group("/api", h.userIdentity)
+	{
+		song := api.Group("/song")
+		{
+			song.GET("/")
+			song.POST("/")
+		}
+	}
+
 	return router
 }

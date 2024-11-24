@@ -1,16 +1,20 @@
 package repository
 
-import "database/sql"
+import (
+	"github.com/jmoiron/sqlx"
+	"music"
+)
 
 type Authorization interface {
-	SingUp(username string, password string) error
+	CreateArtist(username string, password string) error
+	GetArtist(username, password string) (music.Artist, error)
 }
 
 type Repository struct {
 	Authorization
 }
 
-func NewRepository(db *sql.DB) *Repository {
+func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization: NewAuthRepository(db),
 	}

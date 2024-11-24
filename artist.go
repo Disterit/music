@@ -1,6 +1,7 @@
 package music
 
 type Artist struct {
-	ArtistName   string `json:"name"`
-	PasswordHash string `json:"password"`
+	Id         int    `json:"id"`
+	ArtistName string `json:"name"`
+	Password   string `json:"password"`
 }

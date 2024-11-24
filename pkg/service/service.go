@@ -1,9 +1,13 @@
 package service
 
-import "music/pkg/repository"
+import (
+	"music/pkg/repository"
+)
 
 type Authorization interface {
 	SingUp(username string, password string) error
+	GenerateToken(username string, password string) (string, error)
+	ParseToken(accessToken string) (int, error)
 }
 
 type Service struct {
