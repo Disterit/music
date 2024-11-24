@@ -35,7 +35,7 @@ func (s *AuthorizationService) SingUp(username string, password string) error {
 }
 
 func (s *AuthorizationService) GenerateToken(username string, password string) (string, error) {
-	artist, err := s.repo.GetArtist(username, password)
+	artist, err := s.repo.GetArtist(username, generatePasswordHash(password))
 	if err != nil {
 		return "", err
 	}

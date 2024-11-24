@@ -19,15 +19,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	auth := router.Group("/auth")
 	{
 		auth.POST("/sing-up", h.SingUp)
-		auth.GET("/sing-in", h.SingIn)
+		auth.POST("/sing-in", h.SingIn)
 	}
 
 	api := router.Group("/api", h.userIdentity)
 	{
 		song := api.Group("/song")
 		{
-			song.GET("/")
 			song.POST("/")
+			song.GET("/")
 		}
 	}
 

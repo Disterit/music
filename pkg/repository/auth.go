@@ -27,7 +27,7 @@ func (r *AuthRepository) CreateArtist(username string, password string) error {
 
 func (r *AuthRepository) GetArtist(username, password string) (music.Artist, error) {
 	var artist music.Artist
-	query := fmt.Sprintf("SELECT id FROM %s WHERE artist_name = $1 AND password_hash = 2$", artistTable)
+	query := fmt.Sprintf("SELECT id FROM %s WHERE artist_name = $1 AND password_hash = $2", artistTable)
 
 	err := r.db.Get(&artist, query, username, password)
 	if err != nil {
