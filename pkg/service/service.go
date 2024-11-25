@@ -13,6 +13,10 @@ type Authorization interface {
 
 type Album interface {
 	CreateAlbum(album music.Album) (int, error)
+	GetAlbums(artistId int) ([]music.Album, error)
+	GetAlbum(artistId, albumId int) (music.Album, error)
+	UpdateAlbum(album music.Album) error
+	DeleteAlbum(artistId, albumId int) error
 }
 
 type Song interface {
