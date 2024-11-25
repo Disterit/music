@@ -32,7 +32,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		album := api.Group("/album")
 		{
-			album.POST("/")
+			album.POST("/", h.CreateAlbum)
 			album.GET("/")
 		}
 	}
