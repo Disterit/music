@@ -35,6 +35,12 @@ func (h *Handler) CreateSong(c *gin.Context) {
 
 }
 
-func (h *Handler) name() {
+func (h *Handler) GetSong(c *gin.Context) {}
 
-}
+func (h *Handler) GetAllSongArtist(c *gin.Context) {}
+
+func (h *Handler) GetAllSong(c *gin.Context) {}
+
+func (h *Handler) UpdateSong(c *gin.Context) {}
+
+func (h *Handler) DeleteSong(c *gin.Context) {}

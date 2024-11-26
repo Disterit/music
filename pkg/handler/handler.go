@@ -27,7 +27,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		song := api.Group("/song")
 		{
 			song.POST("/", h.CreateSong)
-			song.GET("/")
+			song.GET("/", h.GetAllSong)
+			song.GET("/:id", h.GetSong)
+			song.PUT("/:id", h.UpdateSong)
+			song.DELETE("/:id", h.DeleteSong)
+			song.GET("/artist/:id", h.GetAllSongArtist)
+
 		}
 
 		album := api.Group("/album")

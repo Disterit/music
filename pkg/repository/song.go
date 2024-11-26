@@ -17,17 +17,19 @@ func NewSongRepository(db *sqlx.DB) *SongRepository {
 func (r *SongRepository) CreateSong(song music.Song, artistId int) (int, error) {
 	var id int
 
-	query := fmt.Sprintf(`SELECT id FROM %s WHERE id = $1 AND id_artist = $2`, albumTable)
-	row := r.db.QueryRow(query, song.AlbumId, artistId)
-	err := row.Scan(&id)
-	if err != nil {
-		return 0, fmt.Errorf("Not your album: %w", err)
-	}
+	query := fmt.Sprintf(`
+		WITH valid_album AS (
+			SELECT id FROM %s WHERE id = $1 AND id_artist = $2
+		)
+		INSERT INTO %s (title_song, text_song, id_genre, id_album)
+		SELECT $3, $4, $5, id 
+		FROM valid_album
+		RETURNING id
+	`, albumTable, songsTable)
 
-	query = fmt.Sprintf(`INSERT INTO %s (title_song, text_song, id_genre, id_album) VALUES ($1, $2, $3, $4) RETURNING id`, songsTable)
-	row = r.db.QueryRow(query, song.TitleSong, song.TextSong, song.GenreID, song.AlbumId)
+	row := r.db.QueryRow(query, song.AlbumId, artistId, song.TitleSong, song.TextSong, song.GenreID)
 	if err := row.Scan(&id); err != nil {
-		return 0, fmt.Errorf("Not your song: %w", err)
+		return 0, fmt.Errorf("Failed to create song: %w", err)
 	}
 
 	return id, nil
