@@ -19,7 +19,7 @@ type Album interface {
 }
 
 type Song interface {
-	CreateSong(song music.Song) error
+	CreateSong(song music.Song, artistId int) (int, error)
 }
 
 type Repository struct {

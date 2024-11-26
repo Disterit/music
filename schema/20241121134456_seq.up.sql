@@ -12,7 +12,8 @@ CREATE TABLE genre (
 CREATE TABLE album (
     id serial primary key ,
     title_album varchar(255) not null ,
-    id_artist integer references artist(id) on delete cascade not null
+    id_artist integer references artist(id) on delete cascade not null,
+    unique (id_artist, title_album)
 );
 
 CREATE TABLE songs (
